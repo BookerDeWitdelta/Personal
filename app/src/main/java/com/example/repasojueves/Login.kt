@@ -2,6 +2,7 @@ package com.example.repasojueves
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -21,10 +22,18 @@ class Login : AppCompatActivity() {
     fun validar(){
         val txtusu=binding.txtusuario.text.toString()
         val txtcla=binding.txtclave.text.toString()
-        val datos=getSharedPreferences("usuario",Context.MODE_PRIVATE)
+        val datos=getSharedPreferences("bdusuario",Context.MODE_PRIVATE)
         val usu=datos.getString("usuario","")
         val cla=datos.getString("clave","")
-        if(txtusu.equals(usu)&& txtcla.equals(cla)){
+        if(txtusu.isEmpty()){
+            binding.txtusuario.setHint("Ingresar el usuario")
+        }
+        else if(txtcla.isEmpty()){
+            binding.txtclave.setHint("Ingresar clave")
+            binding.txtclave.setHintTextColor(Color.RED)
+        }
+        else if(txtusu.equals(usu)&& txtcla.equals(cla)){
+            Toast.makeText(this,"Datos correctos",Toast.LENGTH_LONG).show()
             startActivity(Intent(this,Usuario::class.java))
         }
     }
