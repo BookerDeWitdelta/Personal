@@ -1,5 +1,6 @@
 package com.example.repasojueves
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,21 +15,17 @@ class Login : AppCompatActivity() {
         val view=binding.root
         setContentView(view)
         binding.btnlogin.setOnClickListener {
-            val usuario=binding.txtusuario.text.toString()
-            val clave=binding.txtclave.text.toString()
-            if(usuario.isEmpty()&&clave.isEmpty()){
-                Toast.makeText(this,"No puedes tener datos vacios",Toast.LENGTH_LONG).show()
-            }
-            else if(usuario.toString().length<3){
-                Toast.makeText(this,"El usuario debe tener mas de dos caracteres",Toast.LENGTH_LONG).show()
-            }
-            else if(usuario=="pepe" && clave=="123") {
-                startActivity(Intent(this,Usuario::class.java))
-            }
-            else{
-                Toast.makeText(this,"Datos incorrectos",Toast.LENGTH_LONG).show()
-            }
+            validar()
         }
-
+    }
+    fun validar(){
+        val txtusu=binding.txtusuario.text.toString()
+        val txtcla=binding.txtclave.text.toString()
+        val datos=getSharedPreferences("usuario",Context.MODE_PRIVATE)
+        val usu=datos.getString("usuario","")
+        val cla=datos.getString("clave","")
+        if(txtusu.equals(usu)&& txtcla.equals(cla)){
+            startActivity(Intent(this,Usuario::class.java))
+        }
     }
 }

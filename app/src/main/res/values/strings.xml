@@ -8,4 +8,6 @@
     <string name="Usuario">Usuario</string>
     <string name="Contraseña">Contraseña</string>
     <string name="Boton">boton</string>
+    <string name="usuario">Usuario</string>
+    <string name="clave">Clave</string>
 </resources>
