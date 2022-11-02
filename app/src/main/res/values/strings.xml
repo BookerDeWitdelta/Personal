@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">RepasoJueves</string>
+    <string name="Nombre">Nombre</string>
+    <string name="Apellido" />
+    <string name="Apellido1">Apellido</string>
+    <string name="Celular">Celular</string>
+    <string name="Correo">Correo</string>
+    <string name="Usuario">Usuario</string>
+    <string name="Contraseña">Contraseña</string>
+    <string name="Boton">boton</string>
+</resources>
