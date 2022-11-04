@@ -11,6 +11,13 @@ class Usuario : AppCompatActivity() {
         binding=ActivityUsuarioBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        val bundle=intent.extras
+        val dato=bundle?.getString("nombre")
+        val txt=binding.llegadato
+        txt.setText(dato)
+
+        obtenerdatos()
     }
     fun obtenerdatos(){
         val cajatxt=binding.viewnombre

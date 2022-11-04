@@ -34,7 +34,12 @@ class Login : AppCompatActivity() {
         }
         else if(txtusu.equals(usu)&& txtcla.equals(cla)){
             Toast.makeText(this,"Datos correctos",Toast.LENGTH_LONG).show()
-            startActivity(Intent(this,Usuario::class.java))
+            val intent=Intent(this,Usuario::class.java)
+            intent.putExtra("nombre",usu)
+            startActivity(intent)
+        }
+        else{
+            Toast.makeText(this,"Sus datos no son correctos",Toast.LENGTH_LONG).show()
         }
     }
 }
