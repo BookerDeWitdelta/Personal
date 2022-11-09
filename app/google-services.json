@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "442359965138",
+    "project_id": "bd-paseandog",
+    "storage_bucket": "bd-paseandog.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:442359965138:android:9fb54eba8ab732fc29140b",
+        "android_client_info": {
+          "package_name": "com.example.repasojueves"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "442359965138-obok96faj2jou1g07p64splke287c091.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSbaAOUrmQJFlsf4nf_dh7yAYA4eClb3g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "442359965138-obok96faj2jou1g07p64splke287c091.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
