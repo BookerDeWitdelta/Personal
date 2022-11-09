@@ -7,15 +7,17 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.room.Room
 import androidx.room.Room.Companion.databaseBuilder
+import com.example.repasojueves.data.UusarioDB
 import com.example.repasojueves.databinding.ActivityFotoBinding
 import com.example.repasojueves.databinding.ActivityRegistroBinding
 import com.example.repasojueves.model.UsuarioModdel
 
 class Registro : AppCompatActivity() {
     private lateinit var binding:ActivityRegistroBinding
+    private  lateinit var database:UusarioDB
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        database= databaseBuilder(application,UsuarioBD::class.java,UsuarioDB.DATABASE_NAME).allowMainThreedQueries().build()
+        database=   Room.databaseBuilder(application,UusarioDB::class.java,UusarioDB.DATABASE_NAME).allowMainThreadQueries().build()
         binding=ActivityRegistroBinding.inflate(layoutInflater)
         val view=binding.root
         setContentView(view)
@@ -53,6 +55,6 @@ class Registro : AppCompatActivity() {
         val txtusuario=binding.usuario.text.toString()
         val txtclave=binding.clave.text.toString()
         val usu= UsuarioModdel(txtusuario,txtnombre,txtapellido,txtcorreo,txtcelular,txtclave)
-        database.usuarioDao.insertar(usu)
+        database.usuarioDAO.insertar(usu)
     }
 }
