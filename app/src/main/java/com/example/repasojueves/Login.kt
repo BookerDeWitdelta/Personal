@@ -26,7 +26,7 @@ class Login : AppCompatActivity() {
             login(binding.txtusuario.text.toString(),binding.txtclave.text.toString())
         }
         binding.txtrecuperarclave.setOnClickListener{
-
+            startActivity(Intent(this,RecuperarClave::class.java))
         }
     }
     fun validar(){
