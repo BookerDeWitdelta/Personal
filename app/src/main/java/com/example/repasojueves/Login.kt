@@ -53,7 +53,7 @@ class Login : AppCompatActivity() {
         firebaseauth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this){task->
             if(task.isSuccessful){
                 Toast.makeText(this,"Datos correctos",Toast.LENGTH_LONG).show()
-                startActivity(Intent(this,Registro::class.java))
+                startActivity(Intent(this,Usuario::class.java))
             }
             else{
                 Toast.makeText(this,"El usuario no se encontro",Toast.LENGTH_LONG).show()
