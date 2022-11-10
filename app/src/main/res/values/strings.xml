@@ -10,4 +10,8 @@
     <string name="Boton">boton</string>
     <string name="usuario">Usuario</string>
     <string name="clave">Clave</string>
+    <string name="usuariobtn">Usuario</string>
+    <string name="clavebtn">Clave</string>
+    <string name="Clave2btn">Confirmacion de clave</string>
+    <string name="Emailrecuperar">Email Recuperacion</string>
 </resources>

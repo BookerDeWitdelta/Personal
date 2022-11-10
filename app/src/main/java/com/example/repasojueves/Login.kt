@@ -25,6 +25,9 @@ class Login : AppCompatActivity() {
         binding.btnlogin.setOnClickListener {
             login(binding.txtusuario.text.toString(),binding.txtclave.text.toString())
         }
+        binding.txtrecuperarclave.setOnClickListener{
+
+        }
     }
     fun validar(){
         val txtusu=binding.txtusuario.text.toString()
