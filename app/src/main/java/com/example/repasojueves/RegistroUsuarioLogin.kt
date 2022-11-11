@@ -1,5 +1,6 @@
 package com.example.repasojueves
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -36,6 +37,11 @@ class RegistroUsuarioLogin : AppCompatActivity() {
             firebaseAuth.createUserWithEmailAndPassword(email,clave).addOnCompleteListener(this){
                 task->
                 if(task.isSuccessful){
+                    val id=firebaseAuth.uid
+                    val intent=Intent(this,Registro::class.java)
+                    intent.putExtra("id",id)
+                    intent.putExtra("email",email)
+                    startActivity(intent)
                     Toast.makeText(this,"Datos guardados",Toast.LENGTH_LONG).show()
                 }
                 else{

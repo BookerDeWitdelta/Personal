@@ -10,12 +10,14 @@ import com.example.repasojueves.databinding.ActivityLoginBinding
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 class Login : AppCompatActivity() {
     private lateinit var binding:ActivityLoginBinding
     private lateinit var firebaseauth:FirebaseAuth
     private lateinit var authStatel_listener: FirebaseAuth.AuthStateListener
+    private val bd=FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityLoginBinding.inflate(layoutInflater)
@@ -55,6 +57,7 @@ class Login : AppCompatActivity() {
     private fun login(email:String, password:String){
         firebaseauth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this){task->
             if(task.isSuccessful){
+                val id=firebaseauth.uid
                 Toast.makeText(this,"Datos correctos",Toast.LENGTH_LONG).show()
                 startActivity(Intent(this,Usuario::class.java))
             }
@@ -62,6 +65,8 @@ class Login : AppCompatActivity() {
                 Toast.makeText(this,"El usuario no se encontro",Toast.LENGTH_LONG).show()
             }
         }
-
+    }
+    private fun consultardatosusuario(id:String){
+        bd.collection("usuarios")
     }
 }
