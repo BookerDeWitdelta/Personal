@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.repasojueves.model.Paseadorrecycler
 
-class AdaptadorPaseador(private  val context:Context,val lista:MutableList<Paseador>):
+class AdaptadorPaseador(private  val context:Context,val lista:MutableList<Paseadorrecycler>):
         RecyclerView.Adapter<AdaptadorPaseador.ViewHolder>(){
                 inner class ViewHolder(itemsview:View):RecyclerView.ViewHolder(itemsview){
                         lateinit var datosnombre:TextView

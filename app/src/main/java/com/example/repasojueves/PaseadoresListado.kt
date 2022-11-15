@@ -5,21 +5,52 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.repasojueves.databinding.ActivityPaseadoresListadoBinding
+import com.example.repasojueves.model.Paseadorrecycler
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreException
+import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.ktx.Firebase
 
 class PaseadoresListado : AppCompatActivity() {
     private lateinit var binding: ActivityPaseadoresListadoBinding
-    private var listap:MutableList<Paseador> = mutableListOf()
+    private var listap:MutableList<Paseadorrecycler> = mutableListOf()
     private lateinit var  recycler:RecyclerView
+    private lateinit var db:FirebaseFirestore
+    private lateinit var ap:AdaptadorPaseador
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityPaseadoresListadoBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        listap.add(Paseador("Pepe","pepe@gmial.com"))
+        /*listap.add(Paseador("Pepe","pepe@gmial.com"))
         listap.add(Paseador("Pepino","pealex@gmial.com"))
         listap.add(Paseador("Pee","pepeino@gmial.com"))
         listap.add(Paseador("Alex","pep@gmial.com"))
         listap.add(Paseador("Josue","pepesd@gmial.com"))
-        agregaradaptador()
+        agregaradaptador()*/
+        db=FirebaseFirestore.getInstance()
+        db.collection("paseadores").addSnapshotListener(object:EventListener<QuerySnapshot>{
+            override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                if (error!=null){
+                    println("Error en la firebase")
+                }
+                else{
+                    for(pas:DocumentChange in value?.documentChanges!!){
+                        if(pas.type==DocumentChange.Type.ADDED){
+                            listap.add(pas.document.toObject(Paseadorrecycler::class.java))
+                        }
+                    }
+                }
+            }
+
+        })
+        recycler=binding.listarecycler
+        recycler.layoutManager=LinearLayoutManager(this)
+        recycler.setHasFixedSize(true)
+        listap= mutableListOf()
+        ap=AdaptadorPaseador(this,listap)
+        recycler.adapter=ap
     }
     private fun agregaradaptador(){
         recycler=binding.listarecycler
@@ -27,3 +58,4 @@ class PaseadoresListado : AppCompatActivity() {
         recycler.adapter=AdaptadorPaseador(this,listap)
     }
 }
+
