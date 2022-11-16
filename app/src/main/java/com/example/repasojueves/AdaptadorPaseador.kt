@@ -8,20 +8,27 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.repasojueves.model.Paseadorrecycler
 
-class AdaptadorPaseador(private  val context:Context,val lista:MutableList<Paseadorrecycler>):
+class AdaptadorPaseador(private  val context:Context,val lista:MutableList<Paseadorrecycler>, var clickListener:ClickListener):
         RecyclerView.Adapter<AdaptadorPaseador.ViewHolder>(){
-                inner class ViewHolder(itemsview:View):RecyclerView.ViewHolder(itemsview){
+                inner class ViewHolder(itemsview:View,listener: ClickListener):RecyclerView.ViewHolder(itemsview),View.OnClickListener{
                         lateinit var datosnombre:TextView
                         lateinit var  datoscorreo:TextView
+                        var listener:ClickListener?=null
                         init {
                             datosnombre=itemsview.findViewById(R.id.txtnombre)
                             datoscorreo=itemsview.findViewById(R.id.txtcorreo)
+                            //this.listener=listener
+                            itemsview.setOnClickListener(this)
+                        }
+
+                        override fun onClick(v: View?) {
+                                this.listener?.OnClic(v!!,adapterPosition)
                         }
                 }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
                 val view=LayoutInflater.from(parent.context).inflate(R.layout.cardpaseador,parent,false)
-                return(ViewHolder(view))
+                return ViewHolder(view,clickListener)
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {

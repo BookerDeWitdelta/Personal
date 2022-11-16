@@ -2,6 +2,8 @@ package com.example.repasojueves
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.repasojueves.databinding.ActivityPaseadoresListadoBinding
@@ -42,6 +44,7 @@ class PaseadoresListado : AppCompatActivity() {
                         }
                     }
                 }
+                ap.notifyDataSetChanged()
             }
 
         })
@@ -49,13 +52,19 @@ class PaseadoresListado : AppCompatActivity() {
         recycler.layoutManager=LinearLayoutManager(this)
         recycler.setHasFixedSize(true)
         listap= mutableListOf()
-        ap=AdaptadorPaseador(this,listap)
+        ap=AdaptadorPaseador(this,listap !!,object : ClickListener{
+            override fun OnClic(vista: View, posision: Int) {
+                println("a")
+                Toast.makeText(applicationContext,"Click",Toast.LENGTH_LONG)
+            }
+
+        })
         recycler.adapter=ap
     }
-    private fun agregaradaptador(){
+    /*private fun agregaradaptador(){
         recycler=binding.listarecycler
         recycler.layoutManager=LinearLayoutManager(this)
         recycler.adapter=AdaptadorPaseador(this,listap)
-    }
+    }*/
 }
 
