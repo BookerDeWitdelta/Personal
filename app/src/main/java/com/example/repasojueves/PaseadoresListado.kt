@@ -1,5 +1,6 @@
 package com.example.repasojueves
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -25,6 +26,7 @@ class PaseadoresListado : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=ActivityPaseadoresListadoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val intent=Intent(this,DetallePaseador::class.java)
         /*listap.add(Paseador("Pepe","pepe@gmial.com"))
         listap.add(Paseador("Pepino","pealex@gmial.com"))
         listap.add(Paseador("Pee","pepeino@gmial.com"))
@@ -53,9 +55,20 @@ class PaseadoresListado : AppCompatActivity() {
         recycler.setHasFixedSize(true)
         listap= mutableListOf()
         ap=AdaptadorPaseador(this,listap !!,object : ClickListener{
-            override fun OnClic(vista: View, posision: Int) {
-                println("a")
-                Toast.makeText(applicationContext,"Click",Toast.LENGTH_LONG)
+            override fun OnClic(vista: View, posicion: Int) {
+                Toast.makeText(applicationContext,listap?.get(posicion)?.nombre,Toast.LENGTH_LONG).show()
+                val nom=listap?.get(posicion)?.nombre
+                val ape=listap?.get(posicion)?.apellido
+                val corr=listap?.get(posicion)?.correo
+                val cel=listap?.get(posicion)?.celular
+                val des=listap?.get(posicion)?.descripcion
+                val img =listap?.get(posicion)?.imagen
+                intent.putExtra("n",nom)
+                intent.putExtra("a",ape)
+                intent.putExtra("c",corr)
+                intent.putExtra("ce",cel)
+                intent.putExtra("d",des)
+                intent.putExtra("i",img)
             }
 
         })

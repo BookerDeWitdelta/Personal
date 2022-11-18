@@ -20,8 +20,8 @@ class Registro : AppCompatActivity() {
     private val  db=FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        /*database=   Room.databaseBuilder(application,UusarioDB::class.java,UusarioDB.DATABASE_NAME).allowMainThreadQueries().build()
-        binding=ActivityRegistroBinding.inflate(layoutInflater)*/
+        /*database=   Room.databaseBuilder(application,UusarioDB::class.java,UusarioDB.DATABASE_NAME).allowMainThreadQueries().build()*/
+        binding=ActivityRegistroBinding.inflate(layoutInflater)
         val view=binding.root
         setContentView(view)
         val bundle=intent.extras

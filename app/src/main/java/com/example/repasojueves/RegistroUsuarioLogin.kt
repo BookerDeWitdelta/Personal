@@ -41,8 +41,8 @@ class RegistroUsuarioLogin : AppCompatActivity() {
                     val intent=Intent(this,Registro::class.java)
                     intent.putExtra("id",id)
                     intent.putExtra("email",email)
-                    startActivity(intent)
                     Toast.makeText(this,"Datos guardados",Toast.LENGTH_LONG).show()
+                    startActivity(intent)
                 }
                 else{
                     Toast.makeText(this,"Hubo un error",Toast.LENGTH_LONG).show()
